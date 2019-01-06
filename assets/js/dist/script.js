@@ -1,22 +1,22 @@
 /*
-Message load spinner
-Vid fel visa felmeddelande i röd ruta istället för table
-Textarea autosize
-Textarea options (spellcheck osv)
-Spara senaste frågan på disk
-Om fråga på disk finns, ladda den med PHP vid start, men ladda inte tabell
-Favicon - feather database
-Floatable scrollbar
-Max cell width option
-Fixed headers sticky
-Toggle query - Löser floatable scrollbar
-Topmenu
-Topmenu logo
-Topmenu query
-Topmenu results
-Topmeny vanliga sql satser
-Färgad fråga
-Squid runner
+MESSAGE - Message load spinner
+TEXTAREA - Textarea autosize
+OPTION - Option class
+OPTION - Max cells width option
+OPTION - Textarea options (spellcheck osv)
+CSS - Fixed headers sticky
+QUERY - Toggle accordion DETAILS SUMMARY
+POPUP - Topmeny vanliga sql satser
+PHP - Affected rows
+PHP - Found rows
+
+DOCS
+Save latest
+License
+Donate
+Setup
+Options
+Requirements
 */
 
 class MySqlQueryTester {
@@ -43,13 +43,14 @@ class MySqlQueryTester {
   }
 
   handlerClickRun() {
-    this.ajax();
+    this.ajax('query');
+    this.ajax('table');
   }
 
-  ajax() {
+  ajax(type) {
     let sql = document.querySelector('textarea').value;
 
-    fetch(this.o.root + 'ajax.php', {
+    fetch(this.o.root + '/core/ajax-' + type + '.php', {
       method: 'POST',
       body: sql,
       headers: {
@@ -59,29 +60,15 @@ class MySqlQueryTester {
       return response.text();
     })
     .then((text) => {
-      document.querySelector('#results').innerHTML = text;
-      let width = document.querySelector('#results').scrollWidth;
-
-      document.querySelector('#scrollbar').style.width = `${width}px`;
-      //console.log(width);
-
-      //syncscroll.reset();
-
-      let scroll = new Scrollmirror();
-      scroll.init();
-      /*message.set(text);
-
-      if(!helpers.isJson(text)) return;
-
-      let result = JSON.parse(text);
-
-      if(!result.success) return;
-
-      delete td.dataset.loading;
-      this.resetOriginal(result.original, el);
-      this.unsaved(el);
-      */
-     //console.log(text);
+      if(type == 'table') {
+        document.querySelector('#results').innerHTML = text;
+        let width = document.querySelector('#results').scrollWidth;
+        document.querySelector('#scrollbar').style.width = `${width}px`;
+        let scroll = new Scrollmirror();
+        scroll.init();
+      } else if(type == 'query') {
+        document.querySelector('#query').innerHTML = text;
+      }
     });
   }
 }

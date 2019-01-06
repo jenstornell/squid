@@ -8,8 +8,9 @@ body {
   font-family: Arial;
   display: flex;
   flex-direction: column;
-  padding-top: 3rem;
-  height: calc(100% - 3rem);
+  //padding-top: 3rem;
+  //height: calc(100% - 3rem);
+  height: 100%;
 }
 
 * {
@@ -55,9 +56,29 @@ h1 {
   margin-bottom: 1rem;
 }
 
+.scrollbar-wrap {
+  overflow-x: auto;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+
+  #scrollbar {
+    height: 17px;
+  }
+}
+
+pre {
+  //margin: 1rem;
+  padding: .5rem;
+  font-size: 14px;
+  margin-top: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  background: #fafafa !important;
+}
+
 main {
-  //display: flex;
-  padding: 2rem;
+  padding: 1rem;
+  padding-bottom: 0;
   flex-direction: column;
 
   #form {
@@ -67,9 +88,10 @@ main {
       display: block;
       width: 100%;
       font-size: 1rem;
+      font-size: 14px;
       font-family: 'Courier New', Courier, monospace;
       padding: 1rem;
-      border: 2px solid #ccc;
+      border: 1px solid #ccc;
       border-right: none;
       box-sizing: border-box;
       resize: none;
@@ -88,6 +110,7 @@ main {
       font-weight: bold;
       padding: 1rem;
       cursor: default;
+      outline: none;
     
       &:hover {
         background: hsl(208, 100%, 33%);
@@ -100,25 +123,42 @@ main {
   overflow-x: auto;
   width: 100%;
 
+  .message-error {
+    background: #FF4136;
+    color: #fff;
+    margin: 1rem;
+    font-size: 14px;
+    padding: 1rem;
+  }
+
   table {
     border-collapse: collapse;
     max-width: 100%;
     background: #fff;
+    margin-top: 1rem;
+    margin: 1rem;
 
     tr {
       th,
       td {
-        padding: .5rem;
-        border: 1px solid #ccc;
+        padding: .25rem .5rem;
+        border: 1px solid #ddd;
         white-space: pre;
+        font-size: 14px;
       }
 
       th {
         text-align: left;
+        background: #cadcec;
+        border: 1px solid rgba(0,0,0,0.1);
+        font-weight: normal;
+        padding: .75rem .5rem;
       }
 
-      td {
-
+      &:nth-child(odd) {
+        td {
+          background: #f7f7f7;
+        }
       }
     }
   }
