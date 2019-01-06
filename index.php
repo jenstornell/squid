@@ -37,7 +37,11 @@
   </div>
 </main>
 
-<div id="results"></div>
+<div style="width: 100%; overflow-x: auto;">
+  <div class="syncscroll" name="sync" id="scrollbar" style="width: 2500px;">e</div>
+</div>
+
+<div class="syncscroll" name="sync" id="results"></div>
 
 <script src="<?= url('assets/js/dist/script.js?t=' . time() ); ?>"></script>
 <script>

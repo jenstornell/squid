@@ -60,6 +60,15 @@ class MySqlQueryTester {
     })
     .then((text) => {
       document.querySelector('#results').innerHTML = text;
+      let width = document.querySelector('#results').scrollWidth;
+
+      document.querySelector('#scrollbar').style.width = `${width}px`;
+      //console.log(width);
+
+      //syncscroll.reset();
+
+      let scroll = new Scrollmirror();
+      scroll.init();
       /*message.set(text);
 
       if(!helpers.isJson(text)) return;
@@ -72,7 +81,31 @@ class MySqlQueryTester {
       this.resetOriginal(result.original, el);
       this.unsaved(el);
       */
-     console.log(text);
+     //console.log(text);
     });
+  }
+}
+class Scrollmirror {
+  constructor() {
+
+  }
+
+  init() {
+    this.onScroll();
+  }
+
+  onScroll() {
+    let element = document.querySelector('#scrollbar');
+    element.parentNode.addEventListener('scroll', (e) => {
+      let scrollLeft = e.target.scrollLeft;
+
+      console.log(scrollLeft);
+
+      document.querySelector('#results').scrollLeft = scrollLeft;
+    });
+  }
+
+  runOnScroll() {
+
   }
 }
