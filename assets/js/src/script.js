@@ -3,7 +3,6 @@ Message load spinner
 Vid fel visa felmeddelande i röd ruta istället för table
 Textarea autosize
 Textarea options (spellcheck osv)
-Popup med vanliga SQL-frågor
 Spara senaste frågan på disk
 Om fråga på disk finns, ladda den med PHP vid start, men ladda inte tabell
 Favicon - feather database
@@ -11,6 +10,13 @@ Floatable scrollbar
 Max cell width option
 Fixed headers sticky
 Toggle query - Löser floatable scrollbar
+Topmenu
+Topmenu logo
+Topmenu query
+Topmenu results
+Topmeny vanliga sql satser
+Färgad fråga
+Squid runner
 */
 
 class MySqlQueryTester {

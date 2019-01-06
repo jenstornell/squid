@@ -4,17 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   
+  <?php /*
   <link rel="icon" href="http://www.vardagsfinans.se/assets/images/vardagsfinans.se/favicon.png">
+  */
+  ?>
 
-  <title>Smslån och snabblån</title>
+  <title>Squid</title>
   
   <link rel="stylesheet" href="<?= url('assets/css/dist/style.css?t=' . time()); ?>">
 </head>
 <body>
 
-<main>
-  <h1>MySQL Query Tester</h1>
+<nav>
+  <ul>
+    <li>
+      <a href="">Squid</a>
+    </li>
+    <li>
+      <div>
+        <img src="<?= url('assets/images/play.svg'); ?>">
+      </div>
+    </li>
+  </ul>
+</nav>
 
+<main>
   <div id="form">
     <textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">select * from products</textarea>
     <button>
