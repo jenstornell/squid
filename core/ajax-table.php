@@ -1,5 +1,10 @@
 <?php
+include __DIR__ . '/../libs/sql-formatter.php';
+
 $sql = file_get_contents('php://input');
+file_put_contents(__DIR__ . '/../cache/latest.txt', $sql);
+
+$formatted = SqlFormatter::format($sql);
 
 $config = include __DIR__ . '/../config.php';
 
@@ -12,27 +17,46 @@ try {
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $affected_rows = count($data);
 } catch(Exception $e) {
   $message = $e;
 }
 ?>
 
 <?php if(isset($data)) : ?>
-<table>
-  <tr>
-    <?php foreach($data[0] as $key => $value) : ?>
-      <th><?= $key; ?></th>
-    <?php endforeach;  ?>
-  </tr>
 
-  <?php foreach($data as $i => $item) : ?>
-    <tr>
-      <?php foreach($item as $j => $test) : ?>
-        <td><?= $test; ?></td>
+<div class="meta">
+  <details>
+    <summary>Format SQL</summary>
+    <?= $formatted; ?>
+  </details>
+
+  <div class="affected-rows">
+    <strong>Affected rows:</strong> <?= $affected_rows; ?>
+  </div>
+</div>
+
+<div id="table">
+  <table>
+    <thead>
+      <tr>
+        <?php foreach($data[0] as $key => $value) : ?>
+          <th><?= $key; ?></th>
+        <?php endforeach;  ?>
+      </tr>
+    </thead>
+
+    <tbody>
+      <?php foreach($data as $i => $item) : ?>
+        <tr>
+          <?php foreach($item as $j => $test) : ?>
+            <td><?= $test; ?></td>
+          <?php endforeach; ?>
+        </tr>
       <?php endforeach; ?>
-    </tr>
-  <?php endforeach; ?>
-</table>
+    </tbody>
+  </table>
+</div>
 <?php else : ?>
   <div class="message message-error"><?= $message; ?></div>
 <?php endif;

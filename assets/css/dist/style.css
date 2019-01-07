@@ -50,7 +50,6 @@ h1 {
 pre {
   padding: .5rem;
   font-size: 14px;
-  margin-top: 1rem;
   font-family: 'Courier New', Courier, monospace;
   background: #fafafa !important; }
 
@@ -86,32 +85,51 @@ main {
       main #form button:hover {
         background: #005aa8; }
 
-#results {
+#table {
   overflow-x: auto;
   width: 100%; }
-  #results .message-error {
+  #table .message-error {
     background: #FF4136;
     color: #fff;
     margin: 1rem;
     font-size: 14px;
     padding: 1rem; }
-  #results table {
+  #table table {
     border-collapse: collapse;
     max-width: 100%;
     background: #fff;
-    margin-top: 1rem;
-    margin: 1rem; }
-    #results table tr th,
-    #results table tr td {
+    margin: 1rem;
+    margin-top: 0; }
+    #table table tr th,
+    #table table tr td {
       padding: .25rem .5rem;
       border: 1px solid #ddd;
       white-space: pre;
       font-size: 14px; }
-    #results table tr th {
+    #table table tr th {
       text-align: left;
-      background: #cadcec;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: #333;
+      border: 1px solid #111;
       font-weight: normal;
-      padding: .75rem .5rem; }
-    #results table tr:nth-child(odd) td {
+      padding: .75rem .5rem;
+      color: #ccc; }
+    #table table tr:nth-child(odd) td {
       background: #f7f7f7; }
+
+.meta {
+  display: flex;
+  margin: 1rem; }
+  .meta details {
+    width: 50%;
+    margin-right: 1rem; }
+    .meta details summary {
+      background: #ddd;
+      padding: 1rem;
+      flex: 1;
+      cursor: default; }
+      .meta details summary:focus {
+        outline: none; }
+  .meta .affected-rows {
+    flex: 1;
+    border: 2px solid #ddd;
+    padding: 1rem; }

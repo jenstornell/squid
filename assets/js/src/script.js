@@ -1,22 +1,16 @@
 /*
 MESSAGE - Message load spinner
+
 TEXTAREA - Textarea autosize
+
 OPTION - Option class
 OPTION - Max cells width option
 OPTION - Textarea options (spellcheck osv)
-CSS - Fixed headers sticky
-QUERY - Toggle accordion DETAILS SUMMARY
-POPUP - Topmeny vanliga sql satser
-PHP - Affected rows
-PHP - Found rows
+
+JS - Sticky thead
 
 DOCS
-Save latest
-License
-Donate
-Setup
-Options
-Requirements
+Screenshot
 */
 
 class MySqlQueryTester {
@@ -47,10 +41,10 @@ class MySqlQueryTester {
     this.ajax('table');
   }
 
-  ajax(type) {
+  ajax() {
     let sql = document.querySelector('textarea').value;
 
-    fetch(this.o.root + '/core/ajax-' + type + '.php', {
+    fetch(this.o.root + '/core/ajax-table.php', {
       method: 'POST',
       body: sql,
       headers: {
@@ -60,15 +54,11 @@ class MySqlQueryTester {
       return response.text();
     })
     .then((text) => {
-      if(type == 'table') {
-        document.querySelector('#results').innerHTML = text;
-        let width = document.querySelector('#results').scrollWidth;
-        document.querySelector('#scrollbar').style.width = `${width}px`;
-        let scroll = new Scrollmirror();
-        scroll.init();
-      } else if(type == 'query') {
-        document.querySelector('#query').innerHTML = text;
-      }
+      document.querySelector('#results').innerHTML = text;
+      let width = document.querySelector('#table').scrollWidth;
+      document.querySelector('#scrollbar').style.width = `${width}px`;
+      let scroll = new Scrollmirror();
+      scroll.init();
     });
   }
 }

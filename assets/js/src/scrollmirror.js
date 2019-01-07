@@ -14,7 +14,7 @@ class Scrollmirror {
 
       console.log(scrollLeft);
 
-      document.querySelector('#results').scrollLeft = scrollLeft;
+      document.querySelector('#table').scrollLeft = scrollLeft;
     });
   }
 

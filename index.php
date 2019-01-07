@@ -24,15 +24,13 @@
       <img src="<?= url('assets/images/play.svg'); ?>">
     </button>
   </div>
-
-  <div id="query"></div>
 </main>
 
 <div class="scrollbar-wrap">
   <div class="syncscroll" name="sync" id="scrollbar"></div>
 </div>
 
-<div class="syncscroll" name="sync" id="results"></div>
+<div id="results"></div>
 
 <script src="<?= url('assets/js/dist/script.js?t=' . time() ); ?>"></script>
 <script>
