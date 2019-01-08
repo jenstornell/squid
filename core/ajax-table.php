@@ -50,7 +50,7 @@ try {
       <?php foreach($data as $i => $item) : ?>
         <tr>
           <?php foreach($item as $j => $test) : ?>
-            <td><?= $test; ?></td>
+            <td title="<?= $test; ?>"><?= $test; ?></td>
           <?php endforeach; ?>
         </tr>
       <?php endforeach; ?>

@@ -13,7 +13,9 @@ var css = {
 };
 
 var js = {
-  src: 'assets/js/src/**/*.js',
+  src: [
+    'assets/js/src/**/*.js',
+  ],
   dest: 'assets/js/dist',
   filename: 'script.js'
 };

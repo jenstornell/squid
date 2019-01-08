@@ -1,23 +1,17 @@
 /*
 MESSAGE - Message load spinner
-
-TEXTAREA - Textarea autosize
-
-OPTION - Option class
-OPTION - Max cells width option
-OPTION - Textarea options (spellcheck osv)
-
 JS - Sticky thead
+ERROR - CSS missing
 
 DOCS
+Setup
+Donate
 Screenshot
 */
 
 class MySqlQueryTester {
   constructor(options) {
     this.o = Object.assign({}, this.defaults(), options);
-
-    console.log(this.o);
 
     document.addEventListener("DOMContentLoaded", () => {
       this.onClickRun();

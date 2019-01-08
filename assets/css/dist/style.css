@@ -100,21 +100,25 @@ main {
     background: #fff;
     margin: 1rem;
     margin-top: 0; }
-    #table table tr th,
-    #table table tr td {
-      padding: .25rem .5rem;
-      border: 1px solid #ddd;
-      white-space: pre;
-      font-size: 14px; }
-    #table table tr th {
-      text-align: left;
-      background: #333;
-      border: 1px solid #111;
-      font-weight: normal;
-      padding: .75rem .5rem;
-      color: #ccc; }
-    #table table tr:nth-child(odd) td {
-      background: #f7f7f7; }
+    #table table tr {
+      position: relative; }
+      #table table tr th,
+      #table table tr td {
+        padding: .25rem .5rem;
+        border: 1px solid #ddd;
+        white-space: pre;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      #table table tr th {
+        text-align: left;
+        background: #333;
+        border: 1px solid #111;
+        font-weight: normal;
+        padding: .75rem .5rem;
+        color: #ccc; }
+      #table table tr:nth-child(odd) td {
+        background: #f7f7f7; }
 
 .meta {
   display: flex;
