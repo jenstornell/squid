@@ -291,6 +291,8 @@ MESSAGE - Message load spinner
 JS - Sticky thead
 ERROR - CSS missing
 
+Click td to get modal with td content
+
 DOCS
 Setup
 Donate
