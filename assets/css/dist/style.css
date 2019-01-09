@@ -87,13 +87,8 @@ main {
 
 #table {
   overflow-x: auto;
+  overflow: hidden;
   width: 100%; }
-  #table .message-error {
-    background: #FF4136;
-    color: #fff;
-    margin: 1rem;
-    font-size: 14px;
-    padding: 1rem; }
   #table table {
     border-collapse: collapse;
     max-width: 100%;
@@ -137,3 +132,10 @@ main {
     flex: 1;
     border: 2px solid #ddd;
     padding: 1rem; }
+
+.message-error {
+  background: #FF4136;
+  color: #fff;
+  margin: 1rem;
+  font-size: 14px;
+  padding: 1rem; }

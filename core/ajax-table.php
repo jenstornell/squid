@@ -1,25 +1,44 @@
 <?php
 include __DIR__ . '/../libs/sql-formatter.php';
+include __DIR__ . '/../libs/tinyoptions.php';
+include __DIR__ . '/../setup.php';
 
 $sql = file_get_contents('php://input');
 file_put_contents(__DIR__ . '/../cache/latest.txt', $sql);
 
 $formatted = SqlFormatter::format($sql);
 
-$config = include __DIR__ . '/../config.php';
-
-$db = new PDO(sprintf('mysql:host=%s;dbname=%s;charset=utf8mb4', $config['host'], $config['name']), $config['user'], $config['pass']);
+$db = new PDO(
+  sprintf(
+    'mysql:host=%s;dbname=%s;charset=utf8mb4',
+    option('db')['host'],
+    option('db')['name']
+  ),
+  option('db')['user'],
+  option('db')['pass'],
+  [PDO::MYSQL_ATTR_MULTI_STATEMENTS => false]
+);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
 
-try {
-  $stmt = $db->prepare($sql);
-  $stmt->execute();
-  $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  $affected_rows = count($data);
-} catch(Exception $e) {
-  $message = $e;
+if(option('select_only', true) === true) {
+  $allowed = preg_match('/^(\s+)?SELECT/i', $sql);
+} else {
+  $allowed = true;
+}
+
+if($allowed) {
+  try {
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $affected_rows = count($data);
+  } catch(Exception $e) {
+    $message = $e;
+  }
+} else {
+  $message = 'Please use a SELECT query or change your options.';
 }
 ?>
 

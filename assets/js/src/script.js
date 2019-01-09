@@ -1,13 +1,9 @@
 /*
-MESSAGE - Message load spinner
+MESSAGE - Message load spinner - Byt ukonen i play rotera
 JS - Sticky thead
-ERROR - CSS missing
-
-Click td to get modal with td content
 
 DOCS
 Setup
-Donate
 Screenshot
 */
 
@@ -51,7 +47,11 @@ class MySqlQueryTester {
     })
     .then((text) => {
       document.querySelector('#results').innerHTML = text;
-      let width = document.querySelector('#table').scrollWidth;
+
+      let table = document.querySelector('#table');
+
+      if(!table) return;
+      let width = table.scrollWidth;
       document.querySelector('#scrollbar').style.width = `${width}px`;
       let scroll = new Scrollmirror();
       scroll.init();

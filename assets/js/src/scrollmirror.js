@@ -11,10 +11,10 @@ class Scrollmirror {
     let element = document.querySelector('#scrollbar');
     element.parentNode.addEventListener('scroll', (e) => {
       let scrollLeft = e.target.scrollLeft;
+      let table = document.querySelector('#table');
 
-      console.log(scrollLeft);
-
-      document.querySelector('#table').scrollLeft = scrollLeft;
+      if(!table) return;
+      table.scrollLeft = scrollLeft;
     });
   }
 

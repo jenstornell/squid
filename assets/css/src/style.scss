@@ -119,15 +119,8 @@ main {
 
 #table {
   overflow-x: auto;
+  overflow: hidden;
   width: 100%;
-
-  .message-error {
-    background: #FF4136;
-    color: #fff;
-    margin: 1rem;
-    font-size: 14px;
-    padding: 1rem;
-  }
 
   table {
     border-collapse: collapse;
@@ -197,4 +190,12 @@ main {
     //margin: 0 1rem;
     //margin-top: 1rem;
   }
+}
+
+.message-error {
+  background: #FF4136;
+  color: #fff;
+  margin: 1rem;
+  font-size: 14px;
+  padding: 1rem;
 }

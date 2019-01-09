@@ -12,13 +12,13 @@
 
 ## Usage
 
-### SQL Query
+### Query form
 
-Write the SQL query in the textarea and press the button and it will run it and display the results below. While you write, the textarea will autosize to content height.
+Write or paste an SQL query. Click the button to run the query.
 
-So far only SELECT queries are supported. No other queries can display a result.
-
-Every time you run a query, it will also be saved to disc. If something bad happends, the query will still be saved when you refresh the page.
+- The textarea will autosize when writing.
+- Only SELECT queries are allowed by default.
+- The query will be saved to disk and loaded again on refresh.
 
 ### Format SQL
 
@@ -48,6 +48,18 @@ option::set([
 ]);
 ```
 
+### select_only
+
+To prevent data loss by accident, only `SELECT` queries are allowed. At own risk you can disable it by setting it to `false`.
+
+**BE AWARE: This will not protect you against abuse. You can still use subqueries with DELETE or UPDATE actions.**
+
+```php
+option::set([
+  'select_only' => true
+]);
+```
+
 ## Requirements
 
 - PHP7
@@ -59,6 +71,8 @@ option::set([
 - https://github.com/jackmoore/autosize
 
 ## Donate
+
+Donate to [DevoneraAB](https://www.paypal.me/DevoneraAB) if you want.
 
 ## License
 
