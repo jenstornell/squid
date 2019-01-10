@@ -7,5 +7,6 @@ option::set([
     'user' => 'root',
     'pass' => '',
     'host' => 'localhost',
+    'charset' => 'utf8mb4'
   ]
 ]);

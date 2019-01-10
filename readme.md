@@ -10,6 +10,29 @@
 
 ## Setup
 
+### 1. Database
+
+The only thing required is to configure your database options, like below.
+
+```php
+<?php
+option::set([
+  'db' => [
+    'name' => 'database_name',
+    'user' => 'root',
+    'pass' => '',
+    'host' => 'localhost',
+    'charset' => 'utf8mb4' // Optional
+  ]
+]);
+```
+
+### 2. Place on your server
+
+Put the code on a PHP7/MySQL server.
+
+**BE AWARE: There is no login so put it on a localhost server or use a htpasswd file.**
+
 ## Usage
 
 ### Query form
@@ -69,6 +92,11 @@ option::set([
 
 - https://github.com/jdorn/sql-formatter
 - https://github.com/jackmoore/autosize
+- https://github.com/jenstornell/TinyOptions
+
+## Disclaimer
+
+Use at own risk! There is no login.
 
 ## Donate
 

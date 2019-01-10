@@ -7,12 +7,14 @@ $sql = file_get_contents('php://input');
 file_put_contents(__DIR__ . '/../cache/latest.txt', $sql);
 
 $formatted = SqlFormatter::format($sql);
+$charset = (isset(option('db')['charset'])) ? option('db')['charset'] : 'utf8mb4';
 
 $db = new PDO(
   sprintf(
-    'mysql:host=%s;dbname=%s;charset=utf8mb4',
+    'mysql:host=%s;dbname=%s;charset=%s',
     option('db')['host'],
-    option('db')['name']
+    option('db')['name'],
+    $charset
   ),
   option('db')['user'],
   option('db')['pass'],
@@ -69,7 +71,9 @@ if($allowed) {
       <?php foreach($data as $i => $item) : ?>
         <tr>
           <?php foreach($item as $j => $test) : ?>
-            <td title="<?= $test; ?>"><?= $test; ?></td>
+            <td>
+              <div class="td"><?= $test; ?></div>
+            </td>
           <?php endforeach; ?>
         </tr>
       <?php endforeach; ?>

@@ -135,11 +135,19 @@ main {
       td {
         padding: .25rem .5rem;
         border: 1px solid #ddd;
-        white-space: pre;
+        //white-space: pre;
         font-size: 14px;
 
         overflow: hidden;
         text-overflow: ellipsis;
+
+        .td {
+          height: 20px;
+          line-height: 20px;
+          white-space: pre;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
 
       th {

@@ -4,12 +4,14 @@ include __DIR__ . '/setup.php';
 include __DIR__ . '/core/helpers.php';
 
 if(option('cell_max_width') != '') {
-  $max_width = option('cell_max_width');
-  $style = "
-    th, td {
-      max-width: " . $max_width . "px;
-    }
-  ";
+  $max_width = option('cell_max_width', false);
+  if($max_width !== false) {
+    $style = "
+      th, td {
+        max-width: " . $max_width . "px;
+      }
+    ";
+  }
 }
 ?><!doctype html>
 <html lang="en">
@@ -25,6 +27,9 @@ if(option('cell_max_width') != '') {
 
   <style>
     <?= $style; ?>
+  </style>
+
+  <style id="custom-css">
   </style>
 </head>
 <body>
