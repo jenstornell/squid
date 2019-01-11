@@ -42,9 +42,14 @@ if(option('cell_max_width') != '') {
       echo file_get_contents($path);
     }
     ?></textarea>
-    <button>
-      <img src="<?= url('assets/images/play.svg'); ?>">
-    </button>
+    <div class="button">
+      <div class="default">
+        <img src="<?= url('assets/images/play.svg'); ?>">
+      </div>
+      <div class="loading">
+        <img src="<?= url('assets/images/loader.svg'); ?>">
+      </div>
+    </div>
   </div>
 </main>
 
@@ -54,10 +59,15 @@ if(option('cell_max_width') != '') {
 
 <div id="results"></div>
 
+<div class="modal" data-modal-window id="modal">
+	<textarea readonly></textarea>
+</div>
+
 <script src="<?= url('assets/js/dist/script.js?t=' . time() ); ?>"></script>
 <script>
 new MySqlQueryTester();
-autosize(document.querySelector('textarea'));
+autosize(document.querySelectorAll('textarea'));
+modals.init();
 </script>
 
 </body>

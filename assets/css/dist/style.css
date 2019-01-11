@@ -1,3 +1,102 @@
+/*!
+ * Modals v10.1.2: Simple modal dialogue pop-up windows
+ * (c) 2017 Chris Ferdinandi
+ * MIT License
+ * http://github.com/cferdinandi/modals
+ */
+/**
+ * Modal windows
+ */
+/* line 4, /Users/cferdinandi/Sites/modals/src/sass/components/_modals.scss */
+.modal {
+  background-color: #ffffff;
+  display: none;
+  max-width: 100%;
+  visibility: hidden;
+  z-index: 9999; }
+
+@media (min-width: 40em) {
+  /* line 4, /Users/cferdinandi/Sites/modals/src/sass/components/_modals.scss */
+  .modal {
+    max-width: 98%; } }
+
+/* line 19, /Users/cferdinandi/Sites/modals/src/sass/components/_modals.scss */
+.modal.active {
+  display: block;
+  height: 100%;
+  left: 0;
+  max-height: 100%;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  visibility: visible;
+  -webkit-overflow-scrolling: touch; }
+
+@media (min-width: 30em) {
+  /* line 19, /Users/cferdinandi/Sites/modals/src/sass/components/_modals.scss */
+  .modal.active {
+    height: auto;
+    left: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    right: 3%;
+    top: 2rem; } }
+
+@media (min-width: 40em) {
+  /* line 19, /Users/cferdinandi/Sites/modals/src/sass/components/_modals.scss */
+  .modal.active {
+    left: 2rem;
+    right: 2rem; } }
+
+/* line 54, /Users/cferdinandi/Sites/modals/src/sass/components/_modals.scss */
+.modal:focus {
+  outline: none; }
+
+/**
+ * Modal background
+ */
+/* line 63, /Users/cferdinandi/Sites/modals/src/sass/components/_modals.scss */
+.modal-bg {
+  background-color: #272727;
+  bottom: 0;
+  position: fixed;
+  left: 0;
+  opacity: .9;
+  right: 0;
+  top: 0;
+  z-index: 9998; }
+
+/**
+ * Close button
+ */
+/* line 78, /Users/cferdinandi/Sites/modals/src/sass/components/_modals.scss */
+.close {
+  color: #808080;
+  cursor: pointer;
+  float: right;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-decoration: none; }
+
+/* line 86, /Users/cferdinandi/Sites/modals/src/sass/components/_modals.scss */
+.close:hover {
+  color: #5a5a5a;
+  cursor: pointer; }
+
+.modal {
+  border-radius: .25rem; }
+  .modal textarea {
+    width: 100%;
+    border: none;
+    font-size: 14px;
+    font-family: Arial;
+    resize: none;
+    outline: none;
+    line-height: 1.5;
+    padding: 2rem;
+    box-sizing: border-box; }
+
 html,
 body {
   width: 100%; }
@@ -53,6 +152,22 @@ pre {
   font-family: 'Courier New', Courier, monospace;
   background: #fafafa !important; }
 
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg); } }
+
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg); } }
+
 main {
   padding: 1rem;
   padding-bottom: 0;
@@ -71,30 +186,52 @@ main {
       box-sizing: border-box;
       resize: none;
       line-height: 1.5;
-      outline: none; }
+      outline: none;
+      border-radius: .25rem;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0; }
       main #form textarea:focus {
         border-color: #0074D9; }
-    main #form button {
+    main #form .button {
       background: #0075db;
       border: none;
       color: #fff;
       font-weight: bold;
       padding: 1rem;
       cursor: default;
-      outline: none; }
-      main #form button:hover {
+      outline: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: .25rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0; }
+      main #form .button img {
+        display: block; }
+      main #form .button .loading {
+        display: none;
+        -webkit-animation: rotation 2s infinite linear;
+                animation: rotation 2s infinite linear; }
+      main #form .button[data-loading] .loading {
+        display: block; }
+      main #form .button[data-loading] .default {
+        display: none; }
+      main #form .button:hover {
         background: #005aa8; }
+
+#results {
+  padding: 1rem;
+  padding-bottom: 2rem; }
 
 #table {
   overflow-x: auto;
   overflow: hidden;
-  width: 100%; }
+  width: 100%;
+  border-radius: .25rem; }
   #table table {
     border-collapse: collapse;
     max-width: 100%;
-    background: #fff;
-    margin: 1rem;
-    margin-top: 0; }
+    background: #fff; }
     #table table tr {
       position: relative; }
       #table table tr th,
@@ -114,7 +251,7 @@ main {
       #table table tr th {
         text-align: left;
         background: #333;
-        border: 1px solid #111;
+        border: 1px solid #444;
         font-weight: normal;
         padding: .75rem .5rem;
         color: #ccc; }
@@ -123,7 +260,7 @@ main {
 
 .meta {
   display: flex;
-  margin: 1rem; }
+  margin-bottom: 1rem; }
   .meta details {
     width: 50%;
     margin-right: 1rem; }
@@ -131,13 +268,15 @@ main {
       background: #ddd;
       padding: 1rem;
       flex: 1;
-      cursor: default; }
+      cursor: default;
+      border-radius: .25rem; }
       .meta details summary:focus {
         outline: none; }
-  .meta .affected-rows {
+  .meta .found-rows {
     flex: 1;
     border: 2px solid #ddd;
-    padding: 1rem; }
+    padding: 1rem;
+    border-radius: .25rem; }
 
 .message-error {
   background: #FF4136;

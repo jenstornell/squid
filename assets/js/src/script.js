@@ -1,10 +1,5 @@
 /*
-MESSAGE - Message load spinner - Byt ukonen i play rotera
-Hover field type
-Cell Height ska också påverkas vid dubbelklick eller MODAL
-
 SVÅR - JS - Sticky thead
-SCREENCAST
 */
 
 class MySqlQueryTester {
@@ -23,46 +18,29 @@ class MySqlQueryTester {
   }
 
   onClickRun() {
-    document.querySelector('button').addEventListener('click', (e) => {
+    document.querySelector('.button').addEventListener('click', (e) => {
       this.handlerClickRun();
     });
   }
 
   onDoubleClickCell() {
-    document.querySelectorAll('td').forEach(element => {
+    document.querySelectorAll('.td').forEach(element => {
       element.addEventListener('dblclick', (e) => {
-        let index = this.index(e.target.closest('td'));
-        let th = document.querySelector(`th:nth-child(${index})`);
-        let style = '';
+        if(!e.altKey) return;
+        let content = e.target.innerHTML;
+        document.querySelector('#modal textarea').innerHTML = content;
 
-        if(typeof th.dataset.open === 'undefined') {
-          th.dataset.open = '';
-        } else {
-          delete th.dataset.open;
-        }
-
-        document.querySelectorAll('th[data-open]').forEach(el_th => {
-          let index_th = this.index(el_th);
-          style += `td:nth-child(${index_th}),\n`;
+        modals.openModal( null, '#modal', {
+          preventBGScroll: true,
+          preventBGScrollHtml: true,
+          preventBGScrollBody: true,
         });
 
-        if(style == '') {
-          document.querySelector('#custom-css').innerHTML = '';
-        } else {
-          style = style.substring(0, style.length - 2) + `{
-            max-width: none !important;
-          }`;
-          document.querySelector('#custom-css').innerHTML = style;
-        }
+        autosize.update(document.querySelector('#modal textarea'));
+        console.log('open');
 
-        let table = document.querySelector('#table');
-        let width = table.scrollWidth;
-        document.querySelector('#scrollbar').style.width = `${width}px`;
-        let scroll = new Scrollmirror();
-        scroll.init();
       });
     });
-    //custom-css
   }
 
   index(el) {
@@ -76,6 +54,7 @@ class MySqlQueryTester {
 
   ajax() {
     let sql = document.querySelector('textarea').value;
+    document.querySelector('.button').dataset.loading = '';
 
     fetch(this.o.root + '/core/ajax-table.php', {
       method: 'POST',
@@ -99,6 +78,7 @@ class MySqlQueryTester {
       scroll.init();
 
       this.onDoubleClickCell();
+      delete document.querySelector('.button').dataset.loading;
     });
   }
 }

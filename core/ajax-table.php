@@ -35,7 +35,7 @@ if($allowed) {
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $affected_rows = count($data);
+    $found_rows = count($data);
   } catch(Exception $e) {
     $message = $e;
   }
@@ -52,8 +52,8 @@ if($allowed) {
     <?= $formatted; ?>
   </details>
 
-  <div class="affected-rows">
-    <strong>Affected rows:</strong> <?= $affected_rows; ?>
+  <div class="found-rows">
+    <strong>Found rows:</strong> <?= $found_rows; ?>
   </div>
 </div>
 

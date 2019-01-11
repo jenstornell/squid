@@ -1,12 +1,16 @@
 # Squid
 
+A PHP MySQL query tester.
+
 ##  In short
 
-- The textarea will autosize
-- Latest SQL query saved to disc
-- Format the SQL query
-- See count of affected rows
-- Fixed table scrollbar
+- The latest SQL query is saved to disc.
+- The input textarea will autosize.
+- Format the SQL query automatically, if needed.
+- See count of affected rows.
+- Fixed table scrollbar.
+
+![Screenshot](screenshot.png)
 
 ## Setup
 
@@ -54,6 +58,8 @@ A row counter of found rows.
 ### Table
 
 If the SQL query is valid the data will be displayed as a table. I recommend to use `LIMIT`, else it will be slow with many rows.
+
+Hold down `ALT` and double click on a table data cell to see the full content of that cell.
 
 ## Options
 

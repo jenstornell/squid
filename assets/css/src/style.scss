@@ -8,8 +8,6 @@ body {
   font-family: Arial;
   display: flex;
   flex-direction: column;
-  //padding-top: 3rem;
-  //height: calc(100% - 3rem);
   height: 100%;
 }
 
@@ -74,6 +72,15 @@ pre {
   background: #fafafa !important;
 }
 
+@keyframes rotation {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(359deg);
+  }
+}
+
 main {
   padding: 1rem;
   padding-bottom: 0;
@@ -95,13 +102,16 @@ main {
       resize: none;
       line-height: 1.5;
       outline: none;
+      border-radius: .25rem;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     
       &:focus {
         border-color: #0074D9;
       }
     }
     
-    button {
+    .button {
       background: hsl(208, 100%, 43%);
       border: none;
       color: #fff;
@@ -109,6 +119,30 @@ main {
       padding: 1rem;
       cursor: default;
       outline: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: .25rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+
+      img {
+        display: block;
+      }
+
+      .loading {
+        display: none;
+        animation: rotation 2s infinite linear;
+      }
+
+      &[data-loading] {
+        .loading {
+          display: block;
+        }
+        .default {
+          display: none;
+        }
+      }
     
       &:hover {
         background: hsl(208, 100%, 33%);
@@ -117,25 +151,29 @@ main {
   }
 }
 
+#results {
+  padding: 1rem;
+  padding-bottom: 2rem;
+}
+
 #table {
   overflow-x: auto;
   overflow: hidden;
   width: 100%;
+  border-radius: .25rem;
 
   table {
     border-collapse: collapse;
     max-width: 100%;
     background: #fff;
-    margin: 1rem;
-    margin-top: 0;
 
     tr {
       position: relative;
+
       th,
       td {
         padding: .25rem .5rem;
         border: 1px solid #ddd;
-        //white-space: pre;
         font-size: 14px;
 
         overflow: hidden;
@@ -153,7 +191,7 @@ main {
       th {
         text-align: left;
         background: #333;
-        border: 1px solid #111;
+        border: 1px solid #444;
         font-weight: normal;
         padding: .75rem .5rem;
         color: #ccc;
@@ -170,7 +208,7 @@ main {
 
 .meta {
   display: flex;
-  margin: 1rem;
+  margin-bottom: 1rem;
 
   details {
     width: 50%;
@@ -180,10 +218,8 @@ main {
       background: #ddd;
       padding: 1rem;
       flex: 1;
-      //width: 50%;
       cursor: default;
-      //margin: 0 1rem;
-      //margin-top: 1rem;      
+      border-radius: .25rem;
   
       &:focus {
         outline: none;
@@ -191,12 +227,11 @@ main {
     }
   }
 
-  .affected-rows {
+  .found-rows {
     flex: 1;
     border: 2px solid #ddd;
     padding: 1rem;
-    //margin: 0 1rem;
-    //margin-top: 1rem;
+    border-radius: .25rem;
   }
 }
 
