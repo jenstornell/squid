@@ -2,6 +2,8 @@
 
 A PHP MySQL query tester.
 
+![Screenshot](screenshot.png)
+
 ##  In short
 
 - The latest SQL query is saved to disc.
@@ -9,8 +11,6 @@ A PHP MySQL query tester.
 - Format the SQL query automatically, if needed.
 - See count of affected rows.
 - Fixed table scrollbar.
-
-![Screenshot](screenshot.png)
 
 ## Setup
 
