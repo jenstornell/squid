@@ -99,6 +99,7 @@ option::set([
 - https://github.com/jdorn/sql-formatter
 - https://github.com/jackmoore/autosize
 - https://github.com/jenstornell/TinyOptions
+- https://github.com/cferdinandi/modals
 
 ## Disclaimer
 
