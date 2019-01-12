@@ -15,6 +15,11 @@ class Scrollmirror {
 
       if(!table) return;
       table.scrollLeft = scrollLeft;
+
+      let thead = document.querySelector('#thead');
+      thead.style.marginLeft = -scrollLeft + 'px';
+
+      console.log(scrollLeft);
     });
   }
 

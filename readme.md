@@ -1,5 +1,7 @@
 # Squid
 
+*Version 1.1*
+
 A PHP MySQL query tester.
 
 ![Screenshot](screenshot.png)

@@ -191,7 +191,7 @@ main {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0; }
       main #form textarea:focus {
-        border-color: #0074D9; }
+        border-color: #0075db; }
     main #form .button {
       background: #0075db;
       border: none;
@@ -206,6 +206,8 @@ main {
       border-radius: .25rem;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0; }
+      main #form .button:focus {
+        background: #005aa8; }
       main #form .button img {
         display: block; }
       main #form .button .loading {
@@ -240,7 +242,8 @@ main {
         border: 1px solid #ddd;
         font-size: 14px;
         overflow: hidden;
-        text-overflow: ellipsis; }
+        text-overflow: ellipsis;
+        box-sizing: border-box; }
         #table table tr th .td,
         #table table tr td .td {
           height: 20px;
@@ -284,3 +287,26 @@ main {
   margin: 1rem;
   font-size: 14px;
   padding: 1rem; }
+
+#thead-wrap {
+  overflow-x: auto;
+  width: calc(100% - 2rem);
+  position: fixed;
+  top: 0;
+  display: none;
+  overflow: hidden; }
+  #thead-wrap[data-fixed] {
+    display: flex; }
+
+#thead {
+  display: flex; }
+  #thead .th {
+    text-align: left;
+    background: #333;
+    border: 1px solid #444;
+    font-weight: normal;
+    padding: .75rem .5rem;
+    color: #ccc;
+    font-size: 14px;
+    max-width: 200px;
+    box-sizing: border-box; }

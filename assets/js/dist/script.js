@@ -779,6 +779,8 @@ class MySqlQueryTester {
 
     document.addEventListener("DOMContentLoaded", () => {
       this.onClickRun();
+      this.onEnter();
+      this.onTheadScroll();
     });
   }
 
@@ -791,6 +793,14 @@ class MySqlQueryTester {
   onClickRun() {
     document.querySelector('.button').addEventListener('click', (e) => {
       this.handlerClickRun();
+    });
+  }
+
+  onEnter() {
+    document.querySelector('.button').addEventListener('keyup', (e) => {
+      if(e.code == 'Enter') {
+        this.handlerClickRun();
+      }
     });
   }
 
@@ -850,6 +860,33 @@ class MySqlQueryTester {
 
       this.onDoubleClickCell();
       delete document.querySelector('.button').dataset.loading;
+
+      this.thead();
+    });
+  }
+
+  thead() {
+    let width = document.querySelector('table').scrollWidth;
+
+    document.querySelector('#thead').style.width = width + 'px';
+
+    let i = 1;
+    document.querySelectorAll('th').forEach(th => {
+      let th_size = th.offsetWidth;
+      document.querySelector(`#thead .th:nth-child(${i})`).style.width = th_size + 'px';
+      i++;
+    });
+  }
+
+  onTheadScroll() {
+    window.addEventListener('scroll', function(e) {
+      let table = document.querySelector('#table');
+      let table_rect = table.getBoundingClientRect();
+      if(table_rect.top > 0) {
+        delete document.querySelector('#thead-wrap').dataset.fixed;
+      } else {
+        document.querySelector('#thead-wrap').dataset.fixed = '';
+      }
     });
   }
 }
@@ -870,6 +907,11 @@ class Scrollmirror {
 
       if(!table) return;
       table.scrollLeft = scrollLeft;
+
+      let thead = document.querySelector('#thead');
+      thead.style.marginLeft = -scrollLeft + 'px';
+
+      console.log(scrollLeft);
     });
   }
 

@@ -4,7 +4,17 @@ include __DIR__ . '/../libs/tinyoptions.php';
 include __DIR__ . '/../setup.php';
 
 $sql = file_get_contents('php://input');
-file_put_contents(__DIR__ . '/../cache/latest.txt', $sql);
+$root_path = __DIR__ . '/../';
+$folder_path = $root_path . 'cache';
+$file_path = $folder_path . '/latest.txt';
+
+if(!file_exists($folder_path)) {
+  mkdir($folder_path);
+}
+
+if(!file_exists($file_path)) {
+  file_put_contents($file_path, $sql);
+}
 
 $formatted = SqlFormatter::format($sql);
 $charset = (isset(option('db')['charset'])) ? option('db')['charset'] : 'utf8mb4';
@@ -54,6 +64,14 @@ if($allowed) {
 
   <div class="found-rows">
     <strong>Found rows:</strong> <?= $found_rows; ?>
+  </div>
+</div>
+
+<div id="thead-wrap">
+  <div id="thead">
+    <?php foreach($data[0] as $key => $value) : ?>
+      <div class="th"><?= $key; ?></div>
+    <?php endforeach;  ?>
   </div>
 </div>
 

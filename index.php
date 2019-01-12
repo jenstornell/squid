@@ -42,7 +42,7 @@ if(option('cell_max_width') != '') {
       echo file_get_contents($path);
     }
     ?></textarea>
-    <div class="button">
+    <div class="button" tabindex="0">
       <div class="default">
         <img src="<?= url('assets/images/play.svg'); ?>">
       </div>
