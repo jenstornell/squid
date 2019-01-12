@@ -11,8 +11,8 @@ A PHP MySQL query tester.
 phpMyAdmin is a big tool with lots of stuff. Squid is only made for testing SQL queries. In the table below I will compare Squid to the SQL tab in phpMyAdmin.
 
 | Feature                            | Squid              | phpMyAdmin         |
-| ---------------------------------- |:------------------:| ------------------:|
-| Ajax driven                        | :heavy_check_mark: |: :heavy_check_mark: |
+| ---------------------------------- |:------------------:|:------------------:|
+| Ajax driven                        | :heavy_check_mark: | :heavy_check_mark: |
 | Latest query saved                 | :heavy_check_mark: | :warning:          |
 | Textarea autosize                  | :heavy_check_mark: | :warning:          |
 | Query and results on the same page | :heavy_check_mark: | :warning:          |
