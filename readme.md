@@ -21,6 +21,8 @@ phpMyAdmin is a big tool with lots of stuff. Squid is only made for testing SQL 
 | Row counter                        | :heavy_check_mark: | :heavy_check_mark: |
 | Fixed scrollbar and table headings | :heavy_check_mark: | :heavy_check_mark: |
 | No bloat                           | :heavy_check_mark: | :x:                |
+| Login                              | :x:                | :heavy_check_mark: |
+| Mobile friendly                    | :x:                | :x:                |
 
 ## Setup
 
