@@ -6,20 +6,31 @@ A PHP MySQL query tester.
 
 ![Screenshot](screenshot.png)
 
-##  In short
+## Squid vs phpMyAdmin
 
-- Uses Ajax for fetching rows.
-- The latest SQL query is saved to disc.
-- The input textarea will autosize.
-- Format the SQL query automatically, if needed.
-- See count of affected rows.
-- Fixed table scrollbar.
+phpMyAdmin is a big tool with lots of stuff. Squid is only made for testing SQL queries. In the table below I will compare Squid to the SQL tab in phpMyAdmin.
+
+| Feature                            | Squid              | phpMyAdmin         |
+| ---------------------------------- |:------------------:| ------------------:|
+| Ajax driven                        | :heavy_check_mark: | :heavy_check_mark: |
+| Latest query saved                 | :heavy_check_mark: | :warning:          |
+| Textarea autosize                  | :heavy_check_mark: | :warning:          |
+| Query and results on the same page | :heavy_check_mark: | :warning:          |
+| Format query                       | :heavy_check_mark: | :heavy_check_mark: |
+| Create query with buttons          | :x:                | :heavy_check_mark: |
+| Row counter                        | :heavy_check_mark: | :heavy_check_mark: |
+| Fixed scrollbar and table headings | :heavy_check_mark: | :heavy_check_mark: |
+| No bloat                           | :heavy_check_mark: | :x:                |
 
 ## Setup
 
+Place the files on a server with PHP7+ and MySQL.
+
+**BE AWARE: There is no login so put it on a localhost server or use a htpasswd file.**
+
 ### 1. Database
 
-The only thing required is to configure your database options, like below.
+Add a file called `setup.php` in the root and setup your database like below.
 
 ```php
 <?php
@@ -33,12 +44,6 @@ option::set([
   ]
 ]);
 ```
-
-### 2. Place on your server
-
-Put the code on a PHP7/MySQL server.
-
-**BE AWARE: There is no login so put it on a localhost server or use a htpasswd file.**
 
 ## Usage
 
