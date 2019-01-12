@@ -1,2 +1,4 @@
 node_modules
 package-lock.json
+setup.php
+cache/latest.txt

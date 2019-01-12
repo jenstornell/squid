@@ -6,6 +6,7 @@ A PHP MySQL query tester.
 
 ##  In short
 
+- Uses Ajax for fetching rows.
 - The latest SQL query is saved to disc.
 - The input textarea will autosize.
 - Format the SQL query automatically, if needed.
